@@ -1,0 +1,159 @@
+# Compact Spectrometer Plugin for ThorSpectra: CCT, BW #26467 - Release-Candidate Version
+
+Release-Candidate Version of CCT Plugin for ThorSpectra to support Thorlabs Compact Spectrometers newly developed within Brainwave Topic #26467.
+
+This ReadMe file describes installation of both standard and portable version of this Plugin.
+
+The standard version (suffix "_setup" in installer file name) installs just in the same way, as the ThorSpectra does. 
+The portable versions installs separately and does not require Admin privileges - available from shared storage known as R-drive.
+
+
+## Download
+
+Link to Download file from Thorlabs MFT Server:
+
+https://mft.thorlabs.com/WebClientNew/index.html/?ShareToken=C41AC8183636015982EDE32CD2C8DD87200F0399
+
+Location of Artifacts on R-Drive:
+
+R:\doc\Programs\MUN4570_Spectrometer 2.1\Software\ThorSpectra_dev\Plugin\Release-Candidate
+
+
+This network resource contains the following files:
+
+- *ThorSpectra_CCT_setup_3.35.0.3974.exe* - the installer itself, filename contains type of installer and version number in suffix
+- *ReadMe.txt* - this ReadMe text
+- *vcredist_x64_VS2015.exe* - Microsoft C and C++ (MSVC) Runtime Libraries, necessary for installation on fresh new PCs and Virtual Machines, require Elevation Mode (Administrator rights)
+- *dotNetFx472_Full_x86_x64_AllOS_ENU.exe* - Microsoft .NET Framework v.4.7.2, should present on all modern Windows 10 and Windows 11
+
+
+## Install
+
+Installer executables:
+
+- ThorSpectra_CCT_setup_[version-number].exe
+  Administrative rights will be requested, existing installation of ThorSpectra will be overwritten;
+
+- ThorSpectra_CCT_portable_[version-number].exe 
+  alternatively without Administrative rights.
+
+Notes on portable version:
+
+On clean PC the portable version might be missing pre-requisites from the OS Windows - a complete set of them is available from the R-Drive location. 
+The default installation path for portable version is:
+
+	%LOCALAPPDATA%\Thorlabs\ThorSpectra\
+
+this way it does not interfere with any existing installation of the ThorSpectra Software.
+
+
+## Device Connection
+
+Spectrometer does not require installation of any Operating System Drivers.
+
+Plug Spectrometer into USB3 Port of the PC.
+
+Check in Device Manager of the Operating System, that device is successfully recognized and placed among COM Port Devices
+
+
+## Discovery of Ethernet Device via Ethernet
+
+In order to connect to certain CCT instrument via Ethernet, Operator should know IP Address of this instrument.
+
+These settings can be provided into Settings of the instrument when it is connected via USB.
+
+Further, if the device is not auto-detected via UDP discovery, its target IP Address can be specified in Settings Menu of the ThorSpectra Software, Tab "System".
+
+In order to provide a list of IP target Addresses, Operator should activate special "CCT Ethernet Discovery Helper" instance, which is available in "Virtual" Menu of the "Devices" section.
+This Helper provides way to register desired IP Addresses, which Software will try to reach for CCT connection.
+
+
+## Run
+
+The portable installer does not create Windows Register Records, neither Desktop Shortcuts in order to prevent interfere with any existing installation of the ThorSpectra Software.
+Standard setup installer does it.
+
+To run the Software directly start from the installation path:
+
+	ThorSpectra.exe
+
+Any existing other instances of ThorSpectra, as well as Serial Port utilites, which might occupy the Spectrometer Virtual COM Port should not be running.
+
+
+## Basic UI usage
+
+Along with the Device integration, the Compact Spectrometer Plugin brings the following UI Assets into the ThorSpectra Software:
+
+- Top Bar with fast access Device Controls;
+- Device Settings Menu.
+
+Those are the only allowed areas in current ThorSpectra for Plugable devices and all other functionality are standard ThorSpectra features.
+
+
+## Compact Spectrometer Plugin Features
+
+1. Device connection on Software startup (when Plugged into PC) or on "Connect Devices" button otherwise;
+2. The Top Bar fast-access Device Controls;
+3. within Extended Device Controls:
+- "Acquisition" Tab: Integration time, hardware averaging, Shutter control, Trigger mode - all the core functionality;
+- "Wavelength Calibration" Tab: Custom Wavelength Dispersion Correction;
+- "Amplitude Correction" Tab: view and switch On/Off Amplitude Correction;
+- "Ethernet & USB Connection" Tab: Conectivity control;
+- "Advanced & Reset" Tab: Reset to factory settings and miscellaneous.
+
+
+
+# Introduction into Software Development Kit of CCT Spectrometers
+
+
+## Preamble
+
+Software Development Kit of CCT Spectrometers (further called "CCT SDK") is based on the same software libraries (further called "CCT Instrument Driver"), which are running the CCT plugin for ThorSpectra Software.
+CCT SDK contains tools and examples for various Programming Environment, listed in table below. A wider range of Programming Environments is available using interoperability with the Framework behind the CCT Instrument Driver.
+
+CCT SDK and CCT Instrument Driver are installed on computer during software installation.
+
+CCT Instrument Driver is based on .NET Platform and compiled with default "AnyCPU" target for .NET 8 and .NET Framework v.4.8, v.4.7.2. The .NET 8 version of the CCT Instrument Driver is Cross-Platform.
+
+
+## List of Programming Environments with explicit examples
+
+| Programming Environment | Summary of resources                                                                |
+| ----------------------- | ----------------------------------------------------------------------------------- |
+| .NET (C#)               | DLL Libraries along with NuGet packages, example Console and Bemchmark Applications |
+| NI LabView              | VI in LLB container and a project file to run example application                   |
+| Python                  | Plain script along with pip package                                                 |
+
+
+## .NET (C#)
+
+CCT Instrument Driver for writing applications in .NET Platform is distributed in NuGet packages located in installation directory of the ThorSpectra Software with the CCT plugin under local path:
+
+    Examples\CompactSpectrometer\NuGet
+	
+An example Cross-Platform Console Application is located in local path:
+
+    Examples\CompactSpectrometer\CSharp
+
+The distribution contains built executables in related subfolders "bin" along with dependency DLLs.
+
+## NI LabVIEW
+
+At the moment of writing NI LabVIEW is using .NET Assemblies loaded in .NET Framework CLR 4.0 only. The CCT Instrument Driver provides compatible libraries compiled for .NET Framework v.4.8 and v.4.7.2.
+
+VI modules wrapping functionality of the CCT Instrument Driver are assembled into LLB container. LabView project with example application using these VI are located in installation directory of the ThorSpectra Software with the CCT plugin under local path:
+
+    Examples\CompactSpectrometer\LabView
+
+Details on usage of .NET Assemblies in LabVIEW are available on the National Instruments website, e.g. at the moment of writing on page:
+[NI article "Requirements for Using .NET Assemblies in LabVIEW"](https://www.ni.com/docs/en-US/bundle/labview/page/requirements-for-using-net-assemblies-in-labview.html)
+
+The distribution contains built executable in subfolder "bin" along with dependency DLLs in its subfolder "net48".
+
+## Python
+
+Interoperability with CCT Instrument Driver can be performed using package Python.NET (pythonnet). Example is located in installation directory of the ThorSpectra Software with the CCT plugin under local path:
+
+    Examples\CompactSpectrometer\Python
+	
+The distribution contains a python package in subfolder "pyCCT" along with dependency DLLs in its subfolder "net48".
