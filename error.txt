@@ -1,0 +1,28 @@
+PS C:\Users\C376038\Documents\dye flourc\python code\restain_app> & C:/Users/C376038/AppData/Local/Programs/Python/Python311/python.exe "c:/Users/C376038/Documents/dye flourc/python code/restain_app/live 
+graph test .py"
+new
+[ 339.46823     339.84991947  340.23156804 ... 1025.82073468 1026.1059909
+ 1026.39119372]
+c:\Users\C376038\Documents\dye flourc\python code\restain_app\live graph test .py:56: UserWarning: frames=None which we can infer the length of, did not pass an explicit *save_count* and passed cache_frame_data=True.  To avoid a possibly unbounded cache, frame data caching has been disabled. To suppress this warning either pass `cache_frame_data=False` or `save_count=MAX_FRAMES`.
+  ani = FuncAnimation(plt.gcf(), animate, interval=1000, blit=False)
+Traceback (most recent call last):
+  File "C:\Users\C376038\AppData\Local\Programs\Python\Python311\Lib\site-packages\matplotlib\cbook\__init__.py", line 309, in process
+    func(*args, **kwargs)
+  File "C:\Users\C376038\AppData\Local\Programs\Python\Python311\Lib\site-packages\matplotlib\animation.py", line 904, in _start
+    self._init_draw()
+  File "C:\Users\C376038\AppData\Local\Programs\Python\Python311\Lib\site-packages\matplotlib\animation.py", line 1748, in _init_draw
+    self._draw_frame(frame_data)
+  File "C:\Users\C376038\AppData\Local\Programs\Python\Python311\Lib\site-packages\matplotlib\animation.py", line 1767, in _draw_frame
+    self._drawn_artists = self._func(framedata, *self._args)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\C376038\Documents\dye flourc\python code\restain_app\live graph test .py", line 31, in animate
+    spectrometer.fast_spectra()
+  File "c:\Users\C376038\Documents\dye flourc\python code\restain_app\spec_controller.py", line 93, in fast_spectra
+    self.intens = self.spec.intensities()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\C376038\AppData\Local\Programs\Python\Python311\Lib\site-packages\seabreeze\spectrometers.py", line 250, in intensities
+    out = self._dev.f.spectrometer.get_intensities()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src\\seabreeze\\cseabreeze\\c_seabreeze_wrapper.pyx", line 872, in seabreeze.cseabreeze._wrapper.SeaBreezeSpectrometerFeature.get_intensities
+seabreeze.cseabreeze._wrapper.SeaBreezeError: Error: Data transfer error
+

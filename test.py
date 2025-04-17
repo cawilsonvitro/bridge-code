@@ -1,53 +1,78 @@
-# # import os 
-# # os.chdir(r"C:\Program Files\Thorlabs\ThorSpectra\Examples\CompactSpectrometer\Python\pyCCT")
-# # from pyCCT import PyCCT
+# # import random
+# # import tkinter as Tk
+# # from itertools import count
 
-# a = "212.0e-3"
-# b = float(a)
-# print(b)
+# # import matplotlib.pyplot as plt
+# # from matplotlib.animation import FuncAnimation
+# # from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-import random
-import tkinter as Tk
-from itertools import count
+# # import spec_controller as sc
+# # import time
+
+# # plt.style.use('fivethirtyeight')
+# # # values for first graph
+# # x_vals = []
+# # y_vals = []
+
+
+# # index = count()
+# # index2 = count()
+
+# # spectrometer = sc.oceanoptic_controller(50000, "HR2000PLUS")
+
+
+
+
+
+# import matplotlib.pyplot as plt
+
+
+# x = range(0,5)
+# y = range(0,5)
+
+# plt.plot(x,y)
+# plt.show()
+# from datetime import datetime as dt
+
+
+# print(len(dt.now().strftime("%H:%M:%S.%f")))
+
+# import time
+
+
+# print(time.time())
+
+
+# import os
+
+# test = os.walk(r"data")
+
+# for x in test:
+#     print(x[0])
+
+# end = True
+
+# print(os.path.isdir(r"data\Videos"))
+
+# from datetime import datetime as dt
+
+# a = [1,2,3]
+# print(max(a))
+
+# folder = "data/Video/"
+
+
+
+# print(folder[folder.find("_"):])
 
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+data = [1,3,2,8,10,0,9]
+data2 = [300,500,700,300,600,700,000]
+fig, axs = plt.subplots(2,1)
+axs[0].plot(data)
+axs[1].plot(data2)
+# cb = axs[1].pcolormesh([data2]*2, cmap='hot', shading='gouraud')
+# fig.colorbar(cb, ax = axs[1])
+fig.show()
 
-plt.style.use('fivethirtyeight')
-# values for first graph
-x_vals = []
-y_vals = []
-# values for second graph
-y_vals2 = []
-
-index = count()
-index2 = count()
-
-def animate(i):
-    # Generate values
-    x_vals.append(next(index))
-    y_vals.append(random.randint(0, 5))
-    y_vals2.append(random.randint(0, 5))
-    # Get all axes of figure
-    ax1, ax2 = plt.gcf().get_axes()
-    # Clear current data
-    ax1.cla()
-    ax2.cla()
-    # Plot new data
-    ax1.plot(x_vals, y_vals)
-    ax2.plot(x_vals, y_vals2)
-
-
-# GUI
-root = Tk.Tk()
-label = Tk.Label(root, text="Realtime Animated Graphs").grid(column=0, row=0)
-
-# graph 1
-canvas = FigureCanvasTkAgg(plt.gcf(), master=root)
-canvas.get_tk_widget().grid(column=0, row=1)
-# Create two subplots in row 1 and column 1, 2
-plt.gcf().subplots(1, 2)
-ani = FuncAnimation(plt.gcf(), animate, interval=1000, blit=False)
-
-Tk.mainloop()
+dsaf = 1

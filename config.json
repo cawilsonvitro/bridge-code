@@ -1,0 +1,13 @@
+{
+    "Spectrometer": {
+        "integrationtime": "1000000",
+        "inttimerecord": "50000",
+        "model": "HR2000PLUS",
+        "darkAvgs": "10",
+        "lightAvgs": "10",
+        "recordtime":"60",
+        "BoxCar": "5",
+        "startPt":"300",
+        "stopPt":"1550"
+    }
+}
